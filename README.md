@@ -1,3 +1,5 @@
+**[English](README.en.md)** | 简体中文
+
 # Sony ILCE-1 (A1) Firmware Static Analysis & Reverse Engineering
 
 本项目是对 Sony ILCE-1（A1）4.00 固件及相关组件进行的**纯离线静态审计**。研究目标是理解视频 LUT、自定义快门声音相关的数据路径、菜单与处理器间的消息流，以及更新器和启动加载器的安全边界。
