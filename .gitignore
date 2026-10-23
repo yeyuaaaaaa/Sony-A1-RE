@@ -1,0 +1,30 @@
+# Raw firmware and device artifacts
+work/
+outputs/
+*.bin
+*.img
+*.elf
+*.so
+*.DAT
+*.dat
+*.key
+*.pem
+*.p12
+*.pfx
+*.uf2
+
+# Local analysis databases and tooling state
+*.rep/
+*.gpr
+*.lock
+*.idb
+*.i64
+*.sqlite
+__pycache__/
+.venv/
+
+# OS/editor files
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/

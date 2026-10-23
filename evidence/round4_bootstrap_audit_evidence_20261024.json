@@ -1,0 +1,172 @@
+{
+  "scope": "A1 4.00 offline-only bootstrap and debug-interface audit",
+  "date": "2026-10-24",
+  "inputs": {
+    "loader_nor.bin": {
+      "path": "work/verified/a1/loader_resources/loader_nor.bin",
+      "sha256": "03facf97b5becd640b4dd9248308c827d763695e6dbf905a8f9ee1205abdadb2",
+      "size": 92448,
+      "load_va": "0xfe049000",
+      "entry_va": "0xfe049000"
+    },
+    "loader_spi.bin": {
+      "path": "work/verified/a1/loader_resources/loader_spi.bin",
+      "sha256": "314d372d0d2b9883c3b9dc04b40389edb3100e6d5ef529633cc427c3d0cab72e",
+      "size": 39184
+    },
+    "cpapp-b.bin": {
+      "path": "work/verified/a1/fat_resources/cpapp-b.bin",
+      "sha256": "5c8528f46f5a8aa49179089c82b5944ef6b260a859e30a93f53a9b46c4208b12",
+      "base_va": "0x108000"
+    },
+    "tomco.txt": {
+      "path": "work/verified/a1/fat_resources/tomco.txt",
+      "sha256": "2a51c104695392454a930da8368fac53101efd10b862f9538eb6994b7da948ef",
+      "observed_fields": {
+        "console_enable": "N",
+        "uart_baudrate": 460800
+      }
+    }
+  },
+  "loader_string_offsets": {
+    "LDR:DEBUG_MODE_SW": "0x14386",
+    "LDR:Set Debuger Mode": "0x139ec",
+    "LDR:BOOT_EXT(SPI_BOOT_MODE)": "0x14331",
+    "LDR:Wait for transfer CP_ESCAPE@cetus": "0x135b0",
+    "LDR:Wait for transfer cpapp-b.bin@cetus": "0x135d8",
+    "LDR:Wait for transfer backup.bin@cetus": "0x13602",
+    "SPI:Slave initialize": "0x14e21",
+    "spi_handshake_gpio_slave_init": "0x14e96",
+    "pcie_stm_comm_ready": ["0x13740", "0x13771", "0x13799"],
+    "GPIO Init": "0x16470",
+    "BKID_LDR_CFG_ADJUST_BOOTMODE": ["0x13a28", "0x14702"],
+    "BKID_RAM_ADDR_DEBUGER_MODE": "0x13a77",
+    "BKID_LDR_DEBUGER_MODE": "0x13aa0",
+    "BKID_LDR_CFG_EMERGENCY_DETECT": ["0x13ac4", "0x1472d", "0x1477b"]
+  },
+  "loader_search": {
+    "loader_nor.bin": {
+      "UART": 0,
+      "UART_DEBUG": 0,
+      "SERIAL": 0,
+      "FASTBOOT": 0,
+      "BOOTROM": 0,
+      "JTAG": 0,
+      "SWD": 0,
+      "usb": 1,
+      "usb_hit": "usbchrg"
+    },
+    "loader_spi.bin": {
+      "UART": 0,
+      "UART_DEBUG": 0,
+      "SERIAL": 0,
+      "FASTBOOT": 0,
+      "BOOTROM": 0,
+      "JTAG": 0,
+      "SWD": 0,
+      "usb": 0
+    }
+  },
+  "cp_command_tables": {
+    "common_registration_va": "0x5e7d9c",
+    "uart": {
+      "table_va": "0x108fc40",
+      "registration_va": "0x4eb968",
+      "record_count": 18,
+      "range": ["0xf87c40", "0xf87d0c"],
+      "records": [
+        ["0xf87c40", "uart_dump", "0x4ea795"],
+        ["0xf87c4c", "pbl_uart_open", "0x4ea869"],
+        ["0xf87c58", "pbl_uart_close", "0x4ea975"],
+        ["0xf87c64", "pbl_uart_set_func", "0x4eaa25"],
+        ["0xf87c70", "pbl_uart_write_buffer", "0x4eabc5"],
+        ["0xf87c7c", "pbl_uart_read_buffer", "0x4eacb1"],
+        ["0xf87c88", "pbl_uart_txstart", "0x4eae05"],
+        ["0xf87c94", "pbl_uart_rxstart", "0x4eaf2d"],
+        ["0xf87ca0", "pbl_uart_txstop", "0x4eb071"],
+        ["0xf87cac", "pbl_uart_rxstop", "0x4eb139"],
+        ["0xf87cb8", "pbl_uart_get_status", "0x4eb201"],
+        ["0xf87cc4", "pbl_uart_check_buffer", "0x4eb2d1"],
+        ["0xf87cd0", "pbl_uart_clear_buffer", "0x4eb411"],
+        ["0xf87cdc", "pbl_uart_tx_ena_dma", "0x4eb535"],
+        ["0xf87ce8", "pbl_uart_testmode_ena", "0x4eb611"],
+        ["0xf87cf4", "pbl_uart_test_read_buffer", "0x4eb681"],
+        ["0xf87d00", "pbl_uart_test_write_buffer", "0x4eb7c5"],
+        ["0xf87d0c", "debug_memdump_enable", "0x4eb8b9"]
+      ]
+    },
+    "gpio": {
+      "table_va": "0x108f434",
+      "registration_va": "0x4e0ca4",
+      "record_count": 23,
+      "range": ["0xf87434", "0xf8753c"],
+      "representative_commands": [
+        ["sfun port bit sel out ena pul : pbl_gpio_set_func", "0xad84a9"],
+        ["ssel port bit sel             : pbl_gpio_set_sel", "0x4e0151"],
+        ["gsel port bit                 : pbl_gpio_get_sel", "0x4e01f5"],
+        ["sdir port bit dir             : pbl_gpio_set_dir", "0x4e027d"],
+        ["gdir port bit                 : pbl_gpio_get_dir", "0x4e031d"],
+        ["sdat port bit                 : pbl_gpio_set_data", "0x4e04cd"],
+        ["gdat port bit                 : pbl_gpio_get_data", "0x4e05d5"],
+        ["sdrv port bit drv             : pbl_gpio_set_drv", "0x4e0885"],
+        ["greg                          : check register all", "0xad8589"]
+      ]
+    },
+    "spi": {
+      "table_va": "0x108f8c0",
+      "registration_va": "0x4e72cc",
+      "record_count": 22,
+      "range": ["0xf878c0", "0xf879bc"],
+      "representative_commands": [
+        ["pbl_spi_read_backup", "0x4e6099"],
+        ["pbl_spi_open", "0x4e6249"],
+        ["pbl_spi_start", "0x4e6645"],
+        ["pbl_spi_write_data", "0x4e68f9"],
+        ["pbl_spi_read_data", "0x4e69d5"],
+        ["pbl_spi_set_gpio_hiz", "0x4e6b41"],
+        ["pbl_spi_read_write_data", "0x4e6b95"],
+        ["pbl_gpio_set_sel", "0x4e6e15"],
+        ["pbl_gpio_set_dir", "0x4e6ee9"],
+        ["get_gpio_info", "0x4e7189"]
+      ]
+    }
+  },
+  "registration_xrefs": {
+    "gpio": "0x4e0ca4 movw #0xf434; movt #0x108; b.w #0x5e7d9c",
+    "spi": "0x4e72cc movw #0xf8c0; movt #0x108; b.w #0x5e7d9c",
+    "uart": "0x4eb968 movw #0xfc40; movt #0x108; b.w #0x5e7d9c"
+  },
+  "a7m4_reference": {
+    "path": "work/reference/a7m4_custom_firmware/README.md",
+    "scope_note": "A7M4 serial transfer into fastboot; README explicitly says no interactive UART console, UART command line, arbitrary UART command or serial update-mode switch.",
+    "cross_model_use": "structure-only reference; no A1 pin, baud, command or payload inference"
+  },
+  "artifacts": [
+    {
+      "path": "outputs/a1_vulnerability_theory_memo_20261024.md",
+      "sha256": "8478c1695036d0ac59679e2245ad2952930060891118a74c9d9366f6f4db2710"
+    },
+    {
+      "path": "outputs/a1_bootstrap_hardware_backdoor_audit_20261024.md",
+      "sha256": "8a3318e60f7d20d36957796536cd405f6f529cb6cc818779dfd797197895c5da"
+    },
+    {
+      "path": "work/verified/a1/round4_bootstrap_audit_evidence_20261024.json",
+      "sha256": "self-referential-hash-omitted"
+    }
+  ],
+  "conclusions": {
+    "bootrom_present_in_inputs": false,
+    "loader_has_engineering_debug_paths": true,
+    "cp_has_registered_uart_gpio_spi_debug_tables": true,
+    "external_reachability_proven": false,
+    "a1_secret_serial_boot_mode_proven": false,
+    "requires_physical_logic_analyzer": true
+  },
+  "limits": [
+    "No execution, hardware access, QEMU, package generation or firmware modification.",
+    "Command registration does not prove USB, Multi, PCIe or external UART reachability.",
+    "Runtime MMIO values and board pin mux are unknown.",
+    "loader_nor.bin is not BootROM; no separate A1 BootROM image was supplied."
+  ]
+}
